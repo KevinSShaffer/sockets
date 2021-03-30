@@ -7,6 +7,7 @@
 int main()
 {
     WSADATA wsa;
+    SOCKET s;
 
     printf("\nInitialising Winsock...");
 
@@ -16,7 +17,14 @@ int main()
         return 1;
     }
 
-    printf("Initialised.");
+    printf("Initialised.\n");
+
+    if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET)
+    {
+        printf("Could not create socket : %d", WSAGetLastError());
+    }
+
+    printf("Socket created.\n");
 
     return 0;
 }
